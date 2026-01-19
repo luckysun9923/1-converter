@@ -12,7 +12,7 @@ func main() {
 	userText := sourceCurrency()
 	userNumber := enterNumber()
 	targetText := targetCurrency(userText)
-	result := userCalculation(userText, targetText, userNumber)
+	result := userCalculation(userNumber, targetText, userText)
 	fmt.Printf("Результат: %.2f %s\n", result, targetText)
 }
 
@@ -47,11 +47,12 @@ func enterNumber(userNumber float64) float64 {
 	}
 }
 
-func targetCurrency(targetText string) string {
+func targetCurrency(sourceText string) string {
 	for {
 		fmt.Println("Введите целевую валюту : USD/EUR/RUB ")
+		var targetText string
 		fmt.Scan(&targetText)
-		if (targetText == "USD" || targetText == "EUR" || targetText == "RUB") && targetText != userText {
+		if (targetText == "USD" || targetText == "EUR" || targetText == "RUB") && targetText != sourceText {
 			return targetText
 		}
 		fmt.Println("Неверная целевая валюта")

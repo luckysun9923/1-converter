@@ -9,21 +9,11 @@ const usdRub = 80.72
 const eurRub = usdRub / usdEur
 
 func main() {
-	var userText string
-	var targetText string
-	var userNumber float64
-	fmt.Scan(&userNumber)
-	result := userScan(userText)
-	fmt.Println(result)
-	resultCurrency := sourceCurrency(userText)
-	fmt.Println(resultCurrency)
-	resultNumber := enterNumber(userNumber)
-	fmt.Println(resultNumber)
-	resultTargetCurrency := targetCurrency(userText, targetText)
-	fmt.Println(resultTargetCurrency)
-	resultConvertervalute := userCalculation(userNumber, userText, targetText)
-	fmt.Println(resultConvertervalute)
-
+	userText := sourceCurrency()
+	userNumber := enterNumber()
+	targetText := targetCurrency(userText)
+	result := userCalculation(userText, targetText, userNumber)
+	fmt.Printf("Результат: %.2f %s\n", result, targetText)
 }
 
 func userScan(userText string) string {
@@ -57,32 +47,29 @@ func enterNumber(userNumber float64) float64 {
 	}
 }
 
-func targetCurrency(userText string, targetText string) string {
+func targetCurrency(targetText string) string {
 	for {
 		fmt.Println("Введите целевую валюту : USD/EUR/RUB ")
-		fmt.Scan(&userText)
 		fmt.Scan(&targetText)
-		if userText != targetText {
+		if (targetText == "USD" || targetText == "EUR" || targetText == "RUB") && targetText != userText {
 			return targetText
-		} else {
-			fmt.Println("Неверная целевая валюта")
-			continue
 		}
+		fmt.Println("Неверная целевая валюта")
 	}
 }
 
 func userCalculation(userNumber float64, userText string, targetText string) float64 {
 	if userText == "RUB" && targetText == "USD" {
-		return resultConvertervalute = userNumber/usdRub
+		return userNumber / usdRub
 	} else if userText == "USD" && targetText == "RUB" {
-		return resultConvertervalute = userNumber*usdRub
+		return userNumber * usdRub
 	} else if userText == "USD" && targetText == "EUR" {
-		return resultConvertervalute = userNumber*usdEur
+		return userNumber * usdEur
 	} else if userText == "EUR" && targetText == "USD" {
-		return resultConvertervalute = userNumber/usdEur
+		return userNumber / usdEur
 	} else if userText == "RUB" && targetText == "EUR" {
-		return resultConvertervalute = userNumber/eurRub
+		return userNumber / eurRub
 	} else {
-		return resultConvertervalute = userNumber*eurRub
+		return userNumber * eurRub
 	}
 }

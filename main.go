@@ -2,16 +2,16 @@ package main
 
 import (
 	"fmt"
-	"go/types"
 )
+
+const usdEur = 0.854
+const usdRub = 80.72
+const eurRub = usdRub / usdEur
 
 func main() {
 	var userText string
 	var targetText string
-	const usdEur = 0.854
-	const usdRub = 80.72
-	const eurRub = usdRub / usdEur
-	var userNumber int
+	var userNumber float64
 	fmt.Scan(&userNumber)
 	result := userScan(userText)
 	fmt.Println(result)
@@ -44,11 +44,11 @@ func sourceCurrency(userText string) string {
 	}
 }
 
-func enterNumber(userNumber int) int {
+func enterNumber(userNumber float64) float64 {
 	for {
 		fmt.Println("Введите число :")
 		fmt.Scan(&userNumber)
-		if userNumber == int(types.Int32) {
+		if userNumber >= 0 {
 			return userNumber
 		} else {
 			fmt.Println("Неверно введено число")
@@ -71,18 +71,18 @@ func targetCurrency(userText string, targetText string) string {
 	}
 }
 
-func userCalculation(userNumber int, userText string, targetText string) (int, float64) {
+func userCalculation(userNumber float64, userText string, targetText string) float64 {
 	if userText == "RUB" && targetText == "USD" {
-		return resultConvertervalute == userNumber/usdRub
+		return resultConvertervalute = userNumber/usdRub
 	} else if userText == "USD" && targetText == "RUB" {
-		return resultConvertervalute == userNumber*usdRub
+		return resultConvertervalute = userNumber*usdRub
 	} else if userText == "USD" && targetText == "EUR" {
-		return resultConvertervalute == userNumber*usdEur
+		return resultConvertervalute = userNumber*usdEur
 	} else if userText == "EUR" && targetText == "USD" {
-		return resultConvertervalute == userNumber/usdEur
+		return resultConvertervalute = userNumber/usdEur
 	} else if userText == "RUB" && targetText == "EUR" {
-		return resultConvertervalute == userNumber*eurRub
+		return resultConvertervalute = userNumber/eurRub
 	} else {
-		return resultConvertervalute == userNumber/eurRub
+		return resultConvertervalute = userNumber*eurRub
 	}
 }
